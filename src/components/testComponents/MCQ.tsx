@@ -1,28 +1,34 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 
-const MCQ = () => {
+interface Question {
+  currentQuestion: {
+    id: number;
+    type: string;
+    question: string;
+    options: string[];
+  };
+}
+
+const MCQ = ({ currentQuestion }: Question) => {
   return (
     <div>
-      <FormLabel id="mcq" sx={{ fontSize: "1.2rem", color: "black" }}>
-        Pop quiz: MUI is...
+      <FormLabel
+        id={currentQuestion.type}
+        sx={{ fontSize: "1.2rem", color: "black" }}
+      >
+        {currentQuestion.question}
       </FormLabel>
       <RadioGroup aria-labelledby="mcq" name="test" aria-required>
-        <FormControlLabel value="best" control={<Radio />} label="The best!" />
-        <FormControlLabel
-          value="worst"
-          control={<Radio />}
-          label="The worst."
-        />
-        <FormControlLabel
-          value="laura"
-          control={<Radio />}
-          label="The worst."
-        />
-        <FormControlLabel
-          value="lassan"
-          control={<Radio />}
-          label="The worst."
-        />
+        {currentQuestion.options.map((option: string, i: number) => {
+          return (
+            <FormControlLabel
+              value={option}
+              control={<Radio />}
+              label={option}
+              key={i}
+            />
+          );
+        })}
       </RadioGroup>
     </div>
   );

@@ -1,5 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import thank from "../assets/thankyou.png";
+import { Link } from "react-router-dom";
 
 const Thanks = () => {
   return (
@@ -19,9 +20,14 @@ const Thanks = () => {
         flexDirection={"column"}
       >
         <img src={thank} alt="thankyou" />
-        <Typography variant="h5" color="initial">
-          Thankyou for Your Time
+        <Typography variant="h5" color="primary.main">
+          Thank you for Your Time
         </Typography>
+        <Link to="/">
+          <Button variant="outlined" sx={{ my: 3 }}>
+            go home
+          </Button>
+        </Link>
       </Box>
     </Container>
   );

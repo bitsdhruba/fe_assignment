@@ -1,7 +1,16 @@
 import { Box, Button, FormLabel, Grid, TextField, styled } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-const Descriptive = () => {
+interface Question {
+  currentQuestion: {
+    id: number;
+    type: string;
+    question: string;
+    options?: string[];
+  };
+}
+
+const Descriptive = ({ currentQuestion }: Question) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -16,11 +25,14 @@ const Descriptive = () => {
 
   return (
     <Box my={3}>
-      <FormLabel id="desc" sx={{ fontSize: "1.2rem", color: "black" }}>
-        Pop quiz: MUI is...
+      <FormLabel
+        id={currentQuestion.type}
+        sx={{ fontSize: "1.2rem", color: "black" }}
+      >
+        {currentQuestion.question}
       </FormLabel>
       <TextField
-        id="desc"
+        id={currentQuestion.type}
         label="Type Your Answer Here"
         variant="outlined"
         multiline

@@ -9,8 +9,16 @@ import {
 } from "@mui/material";
 import MCQ from "./MCQ";
 import Descriptive from "./Descriptive";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { data } from "../../data/data";
+
+interface CurrentQuestion {
+  id: number;
+  type: string;
+  question: string;
+  options?: string[];
+}
 
 const TestCard = () => {
   const navigate = useNavigate();
@@ -20,17 +28,30 @@ const TestCard = () => {
     navigate("/thanks");
   }
 
+  const [index, setIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState<CurrentQuestion>(
+    data[index]
+  );
+
+  function nextHandler() {
+    setIndex(index + 1);
+    setCurrentQuestion(data[index + 1]);
+  }
+
   return (
     <Container>
       <Box component="div" my={3}>
         <form onSubmit={submitHandler}>
           <FormControl fullWidth required>
             <Typography variant="h5" color="initial" my={3}>
-              Question 1:
+              Question {index + 1}/{data.length}:
             </Typography>
-            <MCQ />
             <Divider />
-            <Descriptive />
+            {data[index].type === "multiple" ? (
+              <MCQ currentQuestion={currentQuestion} />
+            ) : (
+              <Descriptive currentQuestion={currentQuestion} />
+            )}
             <Divider />
             <Grid container spacing={1} my={3}>
               <Grid item xs={6} display={"flex"} justifyContent={"start"}>
@@ -39,9 +60,19 @@ const TestCard = () => {
                 </Button>
               </Grid>
               <Grid item xs={6} display={"flex"} justifyContent={"end"}>
-                <Button type="button" variant="contained">
-                  Next
-                </Button>
+                {index + 1 < data.length ? (
+                  <Button
+                    type="button"
+                    variant="contained"
+                    onClick={nextHandler}
+                  >
+                    Next
+                  </Button>
+                ) : (
+                  <Button type="button" variant="contained" disabled>
+                    Next
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </FormControl>

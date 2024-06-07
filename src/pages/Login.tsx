@@ -9,30 +9,13 @@ import Container from "@mui/material/Container";
 import { Link, useNavigate } from "react-router-dom";
 import FaceIcon from "@mui/icons-material/Face";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-
-  function handleClickShowPassword() {
-    setShowPassword((show) => !show);
-  }
-
-  function handleMouseDownPassword(event: MouseEvent) {
-    event.preventDefault();
-  }
 
   const startHandler = (event: FormEvent) => {
     event.preventDefault();
     navigate("/test");
-    console.log(userData);
   };
 
   const [userData, setUserData] = useState({ email: "", password: "" });
