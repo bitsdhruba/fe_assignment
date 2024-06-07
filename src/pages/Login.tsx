@@ -115,7 +115,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link to="/" style={{ textDecoration: "none" }}>
-        <Typography variant="h6" color="initial">
+        <Typography variant="h6" color="primary.main">
           Docta
         </Typography>
       </Link>{" "}

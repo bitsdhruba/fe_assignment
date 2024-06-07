@@ -21,7 +21,7 @@ const Thanks = () => {
       >
         <img src={thank} alt="thankyou" />
         <Typography variant="h5" color="primary.main">
-          Thank you for Your Time
+          Thank You for Your Time
         </Typography>
         <Link to="/">
           <Button variant="outlined" sx={{ my: 3 }}>
