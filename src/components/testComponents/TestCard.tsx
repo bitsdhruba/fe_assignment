@@ -13,13 +13,6 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { data } from "../../data/data";
 
-interface CurrentQuestion {
-  id: number;
-  type: string;
-  question: string;
-  options?: string[];
-}
-
 const TestCard = () => {
   const navigate = useNavigate();
 
@@ -29,9 +22,7 @@ const TestCard = () => {
   }
 
   const [index, setIndex] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState<CurrentQuestion>(
-    data[index]
-  );
+  const [currentQuestion, setCurrentQuestion] = useState(data[index]);
 
   function nextHandler() {
     setIndex(index + 1);

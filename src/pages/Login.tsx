@@ -11,12 +11,8 @@ import FaceIcon from "@mui/icons-material/Face";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
-interface Context {
-  startHandler: () => void;
-}
-
 const Login = () => {
-  const { startHandler } = useContext(AppContext) as Context;
+  const { startHandler } = useContext(AppContext) as any;
 
   const [userData, setUserData] = useState({ email: "", password: "" });
 

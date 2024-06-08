@@ -6,7 +6,7 @@ interface Question {
     id: number;
     type: string;
     question: string;
-    options: string[];
+    options?: string[];
   };
 }
 
@@ -14,8 +14,8 @@ const MCQ = ({ currentQuestion }: Question) => {
   const [selected, setSelected] = useState<string>("");
   const isSelected = (value: string): boolean => selected === value;
 
-  function handleRadioClick(e: React.ChangeEvent<HTMLInputElement>) {
-    setSelected(e.currentTarget.value);
+  function handleRadioClick(e: React.SyntheticEvent<Element, Event>) {
+    setSelected((e.target as HTMLInputElement).value);
   }
 
   return (
@@ -27,7 +27,7 @@ const MCQ = ({ currentQuestion }: Question) => {
         {currentQuestion.question}
       </FormLabel>
       <RadioGroup aria-labelledby="mcq" name="test" aria-required>
-        {currentQuestion.options.map((option: string, i: number) => {
+        {currentQuestion.options?.map((option: string, i: number) => {
           return (
             <FormControlLabel
               value={option}

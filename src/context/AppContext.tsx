@@ -1,12 +1,16 @@
 import { FormEvent, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const AppContext = createContext();
+interface AppContextType {
+  children?: React.ReactNode;
+}
 
-export default function AppContextProvider({ children }) {
+export const AppContext = createContext<AppContextType | null>(null);
+
+const AppContextProvider: React.FC<AppContextType> = ({ children }) => {
   const navigate = useNavigate();
 
-  const [loggedin, setLoggedin] = useState<boolean>(false);
+  const [loggedin, setLoggedin] = useState(false);
 
   const startHandler = (event: FormEvent) => {
     event.preventDefault();
@@ -20,10 +24,15 @@ export default function AppContextProvider({ children }) {
 
   const value = {
     loggedin,
-    setLoggedin,
     startHandler,
     logout,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
-}
+  return (
+    <AppContext.Provider value={value as AppContextType}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export default AppContextProvider;

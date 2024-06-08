@@ -1,13 +1,14 @@
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
+// import { useContext } from "react";
+// import { AppContext } from "../context/AppContext";
 import { Navigate } from "react-router-dom";
 
 interface Context {
+  children?: React.ReactNode;
   loggedin: boolean;
 }
 
-const PrivateRoute = ({ children }) => {
-  const { loggedin } = useContext(AppContext) as Context;
+const PrivateRoute: React.FC<Context> = ({ children, loggedin }) => {
+  // const { loggedin } = useContext(AppContext) as Context;
 
   if (loggedin) {
     return children;

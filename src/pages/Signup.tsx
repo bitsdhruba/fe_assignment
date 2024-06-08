@@ -10,10 +10,6 @@ import { useContext, useState } from "react";
 import { TextField } from "@mui/material";
 import { AppContext } from "../context/AppContext";
 
-interface Context {
-  startHandler: () => void;
-}
-
 const Signup = () => {
   const [newUserData, setNewUserData] = useState({
     firstname: "",
@@ -22,7 +18,7 @@ const Signup = () => {
     password: "",
   });
 
-  const { startHandler } = useContext(AppContext) as Context;
+  const { startHandler } = useContext(AppContext) as any;
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setNewUserData((prevData) => {

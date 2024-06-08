@@ -18,7 +18,7 @@ function App() {
         <Route
           path="/test"
           element={
-            <PrivateRoute>
+            <PrivateRoute loggedin={false}>
               <Test />
             </PrivateRoute>
           }

@@ -36,7 +36,7 @@ const Timer = () => {
       justifyContent={"end"}
       alignItems={"center"}
     >
-      <Typography variant="h5" color="red.main">
+      <Typography variant="h5" color="primary.dark">
         {minute}:{second}
       </Typography>
     </Box>
