@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { TextField } from "@mui/material";
 import { AppContext } from "../context/AppContext";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/slice/Slice";
 
 const Signup = () => {
   const [newUserData, setNewUserData] = useState({
@@ -19,6 +21,13 @@ const Signup = () => {
   });
 
   const { startHandler } = useContext(AppContext) as any;
+
+  const dispatch = useDispatch();
+
+  function handleSignin() {
+    startHandler;
+    dispatch(addUser(newUserData));
+  }
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setNewUserData((prevData) => {
@@ -48,7 +57,7 @@ const Signup = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" onSubmit={startHandler} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSignin} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
