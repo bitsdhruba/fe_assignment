@@ -3,7 +3,11 @@ import { Box, Typography } from "@mui/material";
 const Footer = () => {
   return (
     <Box mt={8}>
-      <Box>
+      <Box
+        component="div"
+        display={{ md: "flex" }}
+        justifyContent={{ md: "space-around" }}
+      >
         <Box>
           <Typography variant="subtitle1" color="primary.light">
             Platform

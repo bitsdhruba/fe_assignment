@@ -21,7 +21,7 @@ const Timer = () => {
       const s = Math.floor((diff % (1000 * 60)) / 1000);
       setSecond(s);
 
-      if (s === 0) {
+      if (m === 0 && s === 0) {
         navigate("/thanks");
       }
     }, 1000);

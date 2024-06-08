@@ -5,13 +5,16 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link, useNavigate } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 import { TextField } from "@mui/material";
+import { AppContext } from "../context/AppContext";
+
+interface Context {
+  startHandler: () => void;
+}
 
 const Signup = () => {
-  const navigate = useNavigate();
-
   const [newUserData, setNewUserData] = useState({
     firstname: "",
     lastname: "",
@@ -19,13 +22,9 @@ const Signup = () => {
     password: "",
   });
 
-  function submitHandler(event: FormEvent) {
-    event.preventDefault();
-    navigate("/test");
-    console.log(newUserData);
-  }
+  const { startHandler } = useContext(AppContext) as Context;
 
-  function changeHandler(event: ChangeEvent) {
+  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setNewUserData((prevData) => {
       return {
         ...prevData,
@@ -53,7 +52,7 @@ const Signup = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" onSubmit={submitHandler} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={startHandler} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField

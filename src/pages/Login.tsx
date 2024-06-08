@@ -6,21 +6,21 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FaceIcon from "@mui/icons-material/Face";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
+
+interface Context {
+  startHandler: () => void;
+}
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const startHandler = (event: FormEvent) => {
-    event.preventDefault();
-    navigate("/test");
-  };
+  const { startHandler } = useContext(AppContext) as Context;
 
   const [userData, setUserData] = useState({ email: "", password: "" });
 
-  const changeHandler = (event: ChangeEvent) => {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData((prevData) => {
       return {
         ...prevData,

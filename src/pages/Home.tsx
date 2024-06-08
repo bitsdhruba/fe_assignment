@@ -10,7 +10,14 @@ const Home = () => {
     <Container maxWidth="xl">
       <main>
         <Grid container my={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            display={{ md: "flex" }}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <Box
               component="div"
               display={"flex"}

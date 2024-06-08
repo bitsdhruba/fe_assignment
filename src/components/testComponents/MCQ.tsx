@@ -1,4 +1,5 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { useState } from "react";
 
 interface Question {
   currentQuestion: {
@@ -10,6 +11,13 @@ interface Question {
 }
 
 const MCQ = ({ currentQuestion }: Question) => {
+  const [selected, setSelected] = useState<string>("");
+  const isSelected = (value: string): boolean => selected === value;
+
+  function handleRadioClick(e: React.ChangeEvent<HTMLInputElement>) {
+    setSelected(e.currentTarget.value);
+  }
+
   return (
     <div>
       <FormLabel
@@ -26,6 +34,8 @@ const MCQ = ({ currentQuestion }: Question) => {
               control={<Radio />}
               label={option}
               key={i}
+              checked={isSelected(option)}
+              onChange={handleRadioClick}
             />
           );
         })}

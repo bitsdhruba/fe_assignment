@@ -1,5 +1,8 @@
 import { Box, Button, FormLabel, Grid, TextField, styled } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { save } from "../../redux/slice/SaveSlice";
 
 interface Question {
   currentQuestion: {
@@ -23,6 +26,18 @@ const Descriptive = ({ currentQuestion }: Question) => {
     width: 1,
   });
 
+  const dispatch = useDispatch();
+
+  const [answer, setAnswer] = useState<string>("");
+
+  function answerHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setAnswer(e.target.value);
+  }
+
+  function saveHandler() {
+    dispatch(save(answer));
+  }
+
   return (
     <Box my={3}>
       <FormLabel
@@ -38,11 +53,19 @@ const Descriptive = ({ currentQuestion }: Question) => {
         multiline
         fullWidth
         required
+        name={`answer${currentQuestion.id}`}
+        value={answer}
+        onChange={answerHandler}
         sx={{ my: 2 }}
       />
       <Grid container spacing={1} justifyContent={"end"}>
         <Grid item xs={10} display={"flex"} justifyContent={"end"}>
-          <Button type="button" variant="contained" sx={{ m: 1 }}>
+          <Button
+            type="button"
+            variant="contained"
+            sx={{ m: 1 }}
+            onClick={saveHandler}
+          >
             save
           </Button>
           <Button
@@ -53,7 +76,7 @@ const Descriptive = ({ currentQuestion }: Question) => {
             startIcon={<CloudUploadIcon />}
           >
             Upload file
-            <VisuallyHiddenInput type="file" />
+            <VisuallyHiddenInput type="file" name="file" />
           </Button>
         </Grid>
       </Grid>
