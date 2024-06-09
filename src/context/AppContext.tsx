@@ -1,4 +1,4 @@
-import { FormEvent, createContext, useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface AppContextType {
@@ -12,8 +12,7 @@ const AppContextProvider: React.FC<AppContextType> = ({ children }) => {
 
   const [loggedin, setLoggedin] = useState(false);
 
-  const startHandler = (event: FormEvent) => {
-    event.preventDefault();
+  const startHandler = () => {
     setLoggedin(true);
     navigate("/test");
   };

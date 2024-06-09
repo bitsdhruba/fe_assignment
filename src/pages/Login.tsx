@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 import FaceIcon from "@mui/icons-material/Face";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Login = () => {
@@ -24,6 +24,11 @@ const Login = () => {
       };
     });
   };
+
+  function loginHandler(event: FormEvent) {
+    event.preventDefault();
+    startHandler();
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,7 +47,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <Box component="form" onSubmit={startHandler} sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={loginHandler} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             type="email"

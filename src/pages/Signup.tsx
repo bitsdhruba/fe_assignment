@@ -6,7 +6,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { TextField } from "@mui/material";
 import { AppContext } from "../context/AppContext";
 import { useDispatch } from "react-redux";
@@ -24,8 +24,9 @@ const Signup = () => {
 
   const dispatch = useDispatch();
 
-  function handleSignin() {
-    startHandler;
+  function handleSignin(event: FormEvent) {
+    event.preventDefault();
+    startHandler();
     dispatch(addUser(newUserData));
   }
 
