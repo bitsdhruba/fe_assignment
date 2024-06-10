@@ -1,13 +1,24 @@
-import { createContext, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
-interface AppContextType {
-  children?: React.ReactNode;
+export interface Login {
+  loggedin: boolean;
+  setLoggedin: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AppContext = createContext<AppContextType | null>(null);
+export interface AppContextProvider {
+  children: ReactNode;
+}
 
-const AppContextProvider: React.FC<AppContextType> = ({ children }) => {
+export const AppContext = createContext<Partial<Login>>({});
+
+const AppContextProvider: React.FC<AppContextProvider> = ({ children }) => {
   const navigate = useNavigate();
 
   const [loggedin, setLoggedin] = useState(false);
@@ -27,11 +38,7 @@ const AppContextProvider: React.FC<AppContextType> = ({ children }) => {
     logout,
   };
 
-  return (
-    <AppContext.Provider value={value as AppContextType}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export default AppContextProvider;
