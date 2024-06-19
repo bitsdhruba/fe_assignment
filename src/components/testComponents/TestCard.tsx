@@ -47,7 +47,7 @@ const TestCard = () => {
             <Grid container spacing={1} my={3}>
               <Grid item xs={6} display={"flex"} justifyContent={"start"}>
                 <Button type="submit" variant="contained">
-                  finish test
+                  End test
                 </Button>
               </Grid>
               <Grid item xs={6} display={"flex"} justifyContent={"end"}>
@@ -61,7 +61,7 @@ const TestCard = () => {
                   </Button>
                 ) : (
                   <Button type="button" variant="contained" disabled>
-                    Next
+                    End
                   </Button>
                 )}
               </Grid>
